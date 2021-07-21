@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find panda_description)/models/franka_arm_gripper.xacro' " /> 
+ <arg name="public_sim" default="true"/>
+    <!--<arg name="map" default="$(find tiago_multi)/config/map"/>
+-->
+   <!--BEGIN ROBOT 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <include file="$(find multi_robot)/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x -0.6 -y 0 -z 0.775" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+  </group>
+
+   <!--BEGIN ROBOT 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find multi_robot)/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x 0.5 -y 0 -z 0.775" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+  </group>
+
+
+<!--
+  <group ns="robot3">
+    <param name="tf_prefix" value="robot3_tf" />
+    <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch" >
+
+    </include>
+  </group>
+
+
+  <group ns="robot4">
+    <param name="tf_prefix" value="robot4_tf" />
+    <include file="$(find tiago_gazebo)/launch/tiago1_gazebo.launch" >
+
+    
+</include>
+
+  </group>-->
+</launch>
